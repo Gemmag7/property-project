@@ -1,0 +1,29 @@
+<html>
+    <script>
+            function saveData(){
+
+               
+                let ref = fetch("http://localhost:3000/seller", {
+                    method:"POST", 
+                    headers:{"Content-Type": "application/json"},
+                    body: JSON.stringify(seller)
+                })
+                ref.then((x) => console.log("POST req done"))
+                
+            }
+        </script>
+
+ First Name: <input
+                type="text"
+                id="fName"/>
+Surname: <input
+            type="text"
+            id="surname"/>
+
+<input
+        type="button"
+        id="btn1"
+        value="Save"
+        onclick="saveData()"/>
+
+</html>
