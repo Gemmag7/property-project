@@ -1,0 +1,47 @@
+/* EditSeller.css */
+
+/* Background styles */
+body {
+    background-color: #ffe6f2; /* Light pink */
+    font-family: Arial, sans-serif;
+    margin: 0;
+  }
+  
+  /* Container styles */
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Form styles */
+  .form-container {
+    width: 50%;
+    border: 2px solid #ff80bf; /* Medium pink */
+    background-color: #ff99cc; /* Lighter pink */
+    padding: 30px;
+  }
+  
+  /* Input field styles */
+  .form-control {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ff80bf; /* Medium pink */
+  }
+  
+  /* Button styles */
+  #mainBtn {
+    background-color: #ff80bf; /* Medium pink */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #mainBtn:hover {
+    background-color: #ff66a3; /* Darker pink on hover */
+  }

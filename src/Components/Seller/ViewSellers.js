@@ -58,9 +58,10 @@ function generateSellerList()
         <br/>
         <br/>
         <Link className='addLink' state={{sellers}} to={`/seller/add`}>Create +</Link>
-        <table>
+        <table style={{ borderCollapse: 'collapse', width: '100%', marginTop: '20px' }}>
+        
             <tbody>
-            <tr>
+            <tr style={{ backgroundColor: '#FFC0CB', color: '#fff' }}>
                 <th>UserID </th>
                 <th>First Name</th>
                 <th>Surname</th>
@@ -72,7 +73,7 @@ function generateSellerList()
            
             {
                 sellers.map( (X) =>
-                <tr>
+                <tr key={X.id}>
                     <td>{X.id}</td>
                     <td>{X.firstName}</td>
                     <td>{X.surname}</td>
@@ -80,7 +81,7 @@ function generateSellerList()
                     <td>{X.postcode}</td>
                     <td>{X.phone}</td>
                     <td><input type="button" id='deleteBtn' value="Delete"onClick={() => DeleteSeller(X)}></input>
-                    <Link className='editLink' state={{sellers: X}} to={`/seller/${X.id}/edit`}>Update</Link>
+                    <Link className='editLink' state={{sellers: X}} to={`/seller/${X.id}/edit`}  style={{ marginLeft: '10px', textDecoration: 'none' }}>Update</Link>
                     
                     </td>
                   
