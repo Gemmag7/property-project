@@ -1,32 +1,48 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
-function AddSeller(){
+function EditSeller(props){
 
     let navigate = useNavigate();
-    const [seller, setSeller] = useState({
-        "id": "",
-        "firstName": "",
-        "surname":"",
-        "address": "",
-        "postcode": "",
-        "phone": ""
+    const {id} = useParams();
+    const location = useLocation();
+    const [values, setValues] = useState({
+        "id": id,
+        "firstName": props.firstName,
+        "surname":props.surname,
+        "address": props.address,
+        "postcode": props.postcode,
+        "phone": props.phone
       })
+    useEffect(()=> {
+        fetch(`http://localhost:3000/seller/${id}`)
+        .then(res => {
+        setValues({...values, 
+            "firstName": location.state.sellers.firstName,
+            "surname": location.state.sellers.surname,
+            "address": location.state.sellers.address,
+            "postcode": location.state.sellers.postcode,
+            "phone": location.state.sellers.phone,
+        })
+    }).catch(err => console.log(err))
+        
+     
+    }, [])
 
-      const handleSubmit =(e) => {
+    const handleSubmit =(e) => {
         e.preventDefault();
-        fetch(`http://localhost:3000/seller`, {
+        fetch(`http://localhost:3000/seller/${id}`, {
        
-        method:"POST", 
+        method:"PUT", 
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(seller),
+        body: JSON.stringify(values),
       
     }).then(res => res.json())
         .then(res => {
-        setSeller({...seller, 
-            id: seller.id,
+        setValues({...values, 
+            id: id,
             firstName: document.getElementById("firstName").value, 
             surname: document.getElementById("surname").value,
             address: document.getElementById("address").value,
@@ -34,12 +50,11 @@ function AddSeller(){
             phone: document.getElementById("phoneNo").value,
         })
         navigate('/seller')
-        console.log(":",seller)
+        console.log(":",values)
     });
-    
-}
 
-
+   
+    }
     return(
         <div className="d-flex w-100 vh-100 justify-content-center align-items-center">
             <div className="w-50 border bg-secondary text-white p-5">
@@ -49,9 +64,9 @@ function AddSeller(){
                         First Name:<input
                                         type="text"
                                         id="firstName"
-                                        value={seller.firstName}
+                                        value={values.firstName}
                                         name="name"
-                                        onChange={e => setSeller({...seller, firstName:e.target.value})}
+                                        onChange={e => setValues({...values, firstName:e.target.value})}
                                         className="form-control"
                                         placeholder="Enter First Name..."
                                         />
@@ -61,10 +76,10 @@ function AddSeller(){
                     Surname:<input
                                         type="text"
                                         id="surname"
-                                        value={seller.surname}
+                                        value={values.surname}
                                         name="surname"
                                         className="form-control"
-                                        onChange={e => setSeller({...seller, surname:e.target.value})}
+                                        onChange={e => setValues({...values, surname:e.target.value})}
                                         placeholder="Enter Surame..."
                                         />
                     </div>
@@ -73,9 +88,9 @@ function AddSeller(){
                                         type="text"
                                         id="address"
                                         name="address"
-                                        value={seller.address}
+                                        value={values.address}
                                         className="form-control"
-                                        onChange={e => setSeller({...seller, address:e.target.value})}
+                                        onChange={e => setValues({...values, address:e.target.value})}
                                         placeholder="Enter Address..."
                                         />
                     </div>
@@ -84,9 +99,9 @@ function AddSeller(){
                                         type="text"
                                         id="postcode"
                                         name="postcode"
-                                        value={seller.postcode}
+                                        value={values.postcode}
                                         className="form-control"
-                                        onChange={e => setSeller({...seller, postcode:e.target.value})}
+                                        onChange={e => setValues({...values, postcode:e.target.value})}
                                         placeholder="Enter Postcode..."
                                         />
                     </div>
@@ -95,22 +110,21 @@ function AddSeller(){
                                         type="text"
                                         id="phoneNo"
                                         name="phoneNo"
-                                        value={seller.phone}
+                                        value={values.phone}
                                         className="form-control"
-                                        onChange={e => setSeller({...seller, phone:e.target.value})}
+                                        onChange={e => setValues({...values, phone:e.target.value})}
                                         placeholder="Enter Phone Number..."
                                         />
                     </div>
                     <br/>
                     <br/>
-                    <button id="mainBtn"  className="btn btn-info" >Add</button>
+                    <button id="mainBtn"  className="btn btn-info" >Update</button>
                 </form>
                 </div> 
 
         </div>
 
-
     )
-}  
+}
 
-export default AddSeller;
+export default EditSeller;

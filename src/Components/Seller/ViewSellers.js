@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useParams } from "react-router-dom"
+import './Seller.css'
 
 function ViewSellers(){
 
@@ -7,6 +9,40 @@ function ViewSellers(){
 useEffect(() =>{ generateSellerList();
 }, []);
     
+function DeleteSeller(X){
+
+   // let {id} = useParams()
+     fetch(`http://localhost:3000/seller/${X.id}`, {
+      
+        method:"DELETE", 
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({id: X.id}),
+       
+    }).then((res) => res.json());
+    
+    generateSellerList()
+}
+
+function EditSeller(X){
+    let editBtn = document.getElementById("editBtn")
+    if (editBtn.value=="Edit"){
+        //editBtn.value=="Save";
+        //editRecords(X)
+    }
+    // let {id} = useParams()
+      fetch(`http://localhost:3000/seller/${X.id}`, {
+       
+         method:"DELETE", 
+         headers: {
+             'Content-Type': 'application/json',
+         },
+         body: JSON.stringify({id: X.id}),
+        
+     }).then((res) => res.json());
+     generateSellerList()
+ }
 
 function generateSellerList()
 {
@@ -17,8 +53,11 @@ function generateSellerList()
 }
 
     return(
-        <>
-        
+        <div className='container'>
+        <h2>Sellers</h2>
+        <br/>
+        <br/>
+        <Link className='addLink' state={{sellers}} to={`/seller/add`}>Create +</Link>
         <table>
             <tbody>
             <tr>
@@ -30,7 +69,7 @@ function generateSellerList()
                 <th>Phone No.</th>
                 <th>Operations </th>
             </tr>
-           {console.log(sellers)}
+           
             {
                 sellers.map( (X) =>
                 <tr>
@@ -40,14 +79,19 @@ function generateSellerList()
                     <td>{X.address}</td>
                     <td>{X.postcode}</td>
                     <td>{X.phone}</td>
-                    <Link to={`/seller/${X.id}`}> Delete</Link>
+                    <td><input type="button" id='deleteBtn' value="Delete"onClick={() => DeleteSeller(X)}></input>
+                    <Link className='editLink' state={{sellers: X}} to={`/seller/${X.id}/edit`}>Update</Link>
+                    
+                    </td>
+                  
                 </tr>
+               
   ) 
             }
             </tbody>
         </table>
         
-        </>
+        </div>
     )
 }
 

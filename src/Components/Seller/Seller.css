@@ -1,0 +1,96 @@
+/* Seller.css */
+
+/* General styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f0f5;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Table styles */
+  table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th {
+    background-color: #ff9ff3;
+    color: #6c5ce7;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+    border: solid #ff9ff3 1px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
+  td {
+    padding: 8px;
+    
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #fce4ec;
+  }
+  
+  /* Delete button style */
+  input[id="deleteBtn"] {
+    background-color: #ff7675;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  input[id="deleteBtn"]:hover {
+    background-color: #d63031;
+  }
+
+  a.editLink{
+    background-color: #ffc107;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    text-align:justify;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  a.addLink:hover {
+    background-color: #ff9800;
+  }
+
+  a.addLink{
+    background-color: #5cb85c;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    text-align:justify;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  a.addLink:hover {
+    background-color: #009900;
+  }
+ 
