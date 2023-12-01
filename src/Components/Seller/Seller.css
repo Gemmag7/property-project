@@ -47,6 +47,7 @@ th, td {
 th {
   background-color: #FFC0CB;
   color: #fff;
+  padding: 8px;
 }
 
 /* Link styles */
